@@ -4,7 +4,7 @@ import {CredentialsType, getSigner, ISigner} from "./Signers";
 import {CDPEntitiesApi} from "./CDPEntitiesApi";
 import {AnonymousRequestSigner} from "./Signers/AnonymousRequestSigner";
 import request, {Headers, Response} from "request";
-import {wrap} from "./ts-rest-client";
+import {wrap} from "ts-rest-client";
 
 export type DataCenter = 'eu5' | `il1`;
 type StagingEnvs = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
@@ -160,18 +160,22 @@ export class CDP {
             process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0 as any; // todo: restore it?
         }
 
+        const requestOptions: {[key: string]: any}= {
+            headers: {...req.headers, ['Content-type']: 'application/json'},
+            body,
+            // ca: ''
+        };
+
         if (this.options.proxy) {
             this.log(`sending via proxy:`, this.options.proxy);
+            requestOptions.proxy = this.options.proxy;
+            requestOptions.tunnel = false;
         }
 
         return new Promise<T>((resolve, reject) => request[req.method](
             uri,
-            {
-                headers: {...req.headers, ['Content-type']: 'application/json'},
-                body,
-                proxy: this.options.proxy
-                // ca: ''
-            }, (error: any, response: Response, body: any) => {
+            requestOptions,
+            (error: any, response: Response, body: any) => {
                 this.log(`request to ${req.method.toUpperCase()} ${uri} took ${(Date.now() - start) / 1000} seconds`);
                 if (error) {
                     this.log(`error:`, error, response, body);

@@ -29,6 +29,7 @@
     "@types/openapi-v3": "^3.0.0",
     "request": "^2.88.2",
     "strict-uri-encode": "^2.0.0",
+    "ts-rest-client": "git+https://github.com/iBaryo/ts-rest-client.git",
     "typescript": "^4.1.0-beta"
   }
 }
