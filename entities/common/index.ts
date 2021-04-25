@@ -1,4 +1,3 @@
-import {JSONSchema7} from "json-schema";
 import {WithViewId} from "../View";
 
 export type Id = string;
@@ -10,8 +9,8 @@ export type WithEnabled = {
 };
 
 export type WithMetaData = {
-  created: Date | string;
-  updated: Date | string;
+  created: Date | ISODateTimeString;
+  updated: Date | ISODateTimeString;
 };
 
 export type WithDetails = {
@@ -19,14 +18,23 @@ export type WithDetails = {
   description?: string;
 };
 
-export type WithVersion = {
-  version: number;
+export type WithVersion<V = string> = {
+  version: V;
 };
 
-export interface Entity<T = Id> extends WithId<T>, WithMetaData, WithDetails, WithEnabled {
+export type WithTenantId = {
+  tenantId: Id;
+};
+
+export interface StaticEntity<T = Id> extends WithId<T>, WithMetaData, WithDetails {
+}
+
+export interface Entity<T = Id> extends StaticEntity<T>, WithEnabled {
 }
 
 export interface VersionedEntity<T = Id> extends Entity<T>, WithVersion {
 }
 
 export type Payload<T extends Partial<Entity>> = Omit<T, keyof (WithId & WithMetaData & WithViewId)>;
+
+export type ISODateTimeString = string;
