@@ -6,15 +6,7 @@ import {WithBusinessUnitId} from "../BusinessUnit";
 import {WithConfigSchema, WithConfigValues, WithPollingConfig, WithTestResourcePath} from "../common/config";
 import {WithCategory} from "../Action";
 
-type RequireOnlyOne<T, Keys extends keyof T = keyof T> =
-    Pick<T, Exclude<keyof T, Keys>>
-    & { [K in Keys]-?:
-    Required<Pick<T, K>>
-    & Partial<Record<Exclude<Keys, K>, undefined>>
-}[Keys]
-
-export type CloudStorageApplicationWithOnlyOneOriginConnectorOrConnector = RequireOnlyOne<CloudStorageApplication, 'originConnectorId' | 'connectorId'>
-
+export type CloudStorageApplicationWithOnlyOneOriginConnectorOrConnector = CloudStorageApplication & WithCloudStorageResources & {vendor?: string} & ({ originConnectorId: ConnectorId } | { connectorId: ConnectorId })
 
 export type ApplicationId = Id;
 
@@ -28,7 +20,6 @@ interface ApplicationBase extends Entity<ApplicationId>,
 export interface ConnectorBasedApplication extends ApplicationBase, WithCategory, WithPollingConfig {
     vendor?: string;
     originConnectorId: ConnectorId;
-    connectorId: ConnectorId
 }
 
 export interface DirectApplication extends ApplicationBase, WithType<'Direct'> {}
