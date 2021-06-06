@@ -92,6 +92,7 @@ export type CDPEntitiesApi = {
             }>;
 
             customers: EntityApi<CDPEntityDef<{
+                id?: Id;
                 profiles: Customer[];
                 count: number;
                 totalCount: number;
