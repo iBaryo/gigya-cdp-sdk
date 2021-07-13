@@ -1,7 +1,7 @@
 import {ProfileFieldName, WithProtected} from "../common/Field";
 
 export interface MergeRule {
-    properties: Record<ProfileFieldName, WithProtected & {
+    properties: Record<ProfileFieldName, Partial<WithProtected> & {
         name: ProfileFieldName;
         writePolicy: 'immutable' | 'mutable';
         maxValues: number;
