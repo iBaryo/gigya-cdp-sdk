@@ -1,36 +1,12 @@
-import {Entity, Id, Payload, WithEnabled, WithType} from '../common';
-import {ConnectorId} from "../Connector";
-import {WithCloudStorageResources, WithRESTResources} from "./ApplicationResource";
-import {SecuritySchemeName, WithSecuritySchemes} from "../Connector/Auth";
-import {WithBusinessUnitId} from "../BusinessUnit";
-import {WithConfigSchema, WithConfigValues, WithPollingConfig, WithTestResourcePath} from "../common/config";
-import {WithCategory} from "../Action";
+import {SecuritySchemeName} from "../Connector/Auth";
+import {CloudStorageApplication} from "./CloudStorageApplication";
+import {RESTApplication} from "./RESTApplication";
+import {DirectApplication} from "./DirectApplication";
+import {WebClientApplication} from "./WebClientApplication";
 
-export type CloudStorageApplicationWithOnlyOneOriginConnectorOrConnector = CloudStorageApplication & WithCloudStorageResources & {vendor?: string} & ({ originConnectorId: ConnectorId } | { connectorId: ConnectorId })
-
-export type ApplicationId = Id;
-
-interface ApplicationBase extends Entity<ApplicationId>,
-    WithBusinessUnitId,
-    WithConfigSchema,
-    WithConfigValues {
-    logoUrl?: string;
-}
-
-export interface ConnectorBasedApplication extends ApplicationBase, WithCategory, WithPollingConfig {
-    vendor?: string;
-    originConnectorId: ConnectorId;
-}
-
-export interface DirectApplication extends ApplicationBase, WithType<'Direct'> {}
-export interface RESTApplication extends ConnectorBasedApplication, WithSecuritySchemes, WithRESTResources {}
-export interface CloudStorageApplication extends ConnectorBasedApplication, WithCloudStorageResources {}
-
-export type Application = DirectApplication | RESTApplication | CloudStorageApplicationWithOnlyOneOriginConnectorOrConnector;
-
-export function isDirectApplication(app: Application): app is DirectApplication {
-    return 'type' in app;
-}
+export {ApplicationId} from "./common";
+export type Application = DirectApplication | RESTApplication | CloudStorageApplication | WebClientApplication;
+export type ApplicationType = Application['type'];
 
 export interface ApplicationAuth {
     schemeName: SecuritySchemeName;
@@ -41,25 +17,25 @@ export interface ApplicationPriority {
     dataQualityPriority: 'low' | 'medium' | 'high';
 }
 
-export interface ApplicationsEndpoints {
-    '/businessUnit/$bUnit/applications': {
-        GET: (bUnit: Id) => Promise<Application[]>;
-        POST: (bUnit: Id, payload: Omit<Payload<Application>, keyof (WithSecuritySchemes & WithConfigSchema & WithEnabled & WithBusinessUnitId)> & Partial<{
-            predefinedEventIds: string[];
-            predefinedActionIds: string[];
-        }>) => Promise<Application>;
-    };
-
-    '/businessUnit/$bUnit/applications/$appId': {
-        GET: (bUnit: Id, appId: Id) => Promise<Application>;
-        PUT: (bUnit: Id, appId: Id, payload: Omit<Payload<Application>, keyof (WithSecuritySchemes & WithConfigSchema & WithBusinessUnitId & { connectorId: ConnectorId })>) => Promise<Application>;
-        DELETE: (bUnit: Id, appId: Id) => Promise<void>;
-    };
-
-    '/businessUnit/$bUnit/applications/$appId/auth': {
-        POST: (bUnit: Id, appId: ApplicationId, auth: ApplicationAuth) => Promise<ApplicationAuth>; // upsert
-        GET: (bUnit: Id, appId: Id) => Promise<ApplicationAuth>;
-    }
-}
+// interface ApplicationsEndpoints {
+//     '/businessUnit/$bUnit/applications': {
+//         GET: (bUnit: Id) => Promise<Application[]>;
+//         POST: (bUnit: Id, payload: Omit<Payload<Application>, keyof (WithSecuritySchemes & WithConfigSchema & WithEnabled & WithBusinessUnitId)> & Partial<{
+//             predefinedEventIds: string[];
+//             predefinedActionIds: string[];
+//         }>) => Promise<Application>;
+//     };
+//
+//     '/businessUnit/$bUnit/applications/$appId': {
+//         GET: (bUnit: Id, appId: Id) => Promise<Application>;
+//         PUT: (bUnit: Id, appId: Id, payload: Omit<Payload<Application>, keyof (WithSecuritySchemes & WithConfigSchema & WithBusinessUnitId & { connectorId: ConnectorId })>) => Promise<Application>;
+//         DELETE: (bUnit: Id, appId: Id) => Promise<void>;
+//     };
+//
+//     '/businessUnit/$bUnit/applications/$appId/auth': {
+//         POST: (bUnit: Id, appId: ApplicationId, auth: ApplicationAuth) => Promise<ApplicationAuth>; // upsert
+//         GET: (bUnit: Id, appId: Id) => Promise<ApplicationAuth>;
+//     }
+// }
 
 

@@ -28,14 +28,16 @@ import {EventMapping} from "./entities/Event/EventMapping";
 import {EventSchedule} from "./entities/Event/EventSchedule";
 import {MatchingRule, MatchingRulePriority} from "./entities/MatchingRule";
 import {ActionMapping} from "./entities/Action/ActionMapping";
-import {Id, WithId, WithMetaData, WithType} from "./entities/common";
+import {Id, WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
 import {Customer} from "./entities/Customer";
+import {InboundPurposes} from "./entities/InboundPurposes";
 
 export type ServerOnlyFields = keyof (
     WithId
     & WithProtected
     & WithProtectedFields
     & WithMetaData
+    & WithTenantId
     & WithBusinessUnitId &
     WithViewId);
 
@@ -69,6 +71,7 @@ export type CDPEntitiesApi = {
                 event: EntityApi; // TODO: allow only POST
                 status: EntityApi<CDPEntityDef<EventStatus>>; // TODO: allow only GET
                 history: EntityApi<CDPEntityDef<EventHistory>>; // TODO: allow only GET
+                purposes: EntityApi<CDPEntityDef<InboundPurposes>>
             }>;
 
             actions: EntityApi<CDPEntityDef<Action>, {
