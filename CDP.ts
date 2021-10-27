@@ -157,11 +157,16 @@ export class CDP {
         return paths.every(p => !!apiAcl[`${this.options.rootPath}/${p}`]);
     }
 
-    private getDomainDc({dataCenter, env} = this.options) {
-        if (dataCenter == 'eu5' && env == 'prod')
-            return 'eu5';
+    // private getDomainDc({dataCenter, env} = this.options) {
+    //     if (dataCenter == 'eu5' && env == 'prod')
+    //         return 'eu5';
+    //
+    //     const dc = dataCenter == 'il1' ? 'il1-cdp' : 'eu5';
+    //     return `${dc}-${env}`;
+    // }
 
-        const dc = dataCenter == 'il1' ? 'il1-cdp' : 'eu5';
+    private getDomainDc({dataCenter, env} = this.options) {
+        const dc = dataCenter.includes('il1') ? 'il1-cdp' : dataCenter;
         return `${dc}-${env}`;
     }
 
