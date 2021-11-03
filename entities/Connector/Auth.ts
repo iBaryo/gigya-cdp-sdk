@@ -1,7 +1,7 @@
 import {JSONSchema7} from "json-schema";
 import {WithType} from "../common";
 
-// @ts-ignore //TODO: ask Baryo + remove
+// @ts-ignore
 export interface CustomAuth extends JSONSchema7, WithType<'object'> {
 }
 
