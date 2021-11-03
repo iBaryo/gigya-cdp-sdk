@@ -158,9 +158,6 @@ export class CDP {
     }
 
     private getDomainDc({dataCenter, env} = this.options) {
-        if (dataCenter != 'il1' && env == 'prod')
-            return dataCenter;
-
         const dc = dataCenter.includes('il1') ? 'il1-cdp' : dataCenter;
         return `${dc}-${env}`;
     }
