@@ -12,7 +12,7 @@ export type DataCenter = 'eu5' | `us5` | `il1`;
 type StagingEnvs = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 export type Env<n extends StagingEnvs = StagingEnvs> = 'prod' | `st${n}`;
 export const availableEnvs: Record<DataCenter, Env[]> = {
-    us5: [], // WIP: Rom B.
+    us5: ['prod', ...createArray(1, n => `st${n + 1}` as Env)],
     il1: ['prod', ...createArray(8, n => `st${n + 1}` as Env)],
     eu5: ['prod', ...createArray(1, n => `st${n + 1}` as Env)]
 };
@@ -159,6 +159,9 @@ export class CDP {
     }
 
     private getDomainDc({dataCenter, env} = this.options) {
+        if (dataCenter != 'il1' && env == 'prod')
+            return dataCenter;
+
         const dc = dataCenter.includes('il1') ? 'il1-cdp' : dataCenter;
         return `${dc}-${env}`;
     }
