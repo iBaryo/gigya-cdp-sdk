@@ -57,7 +57,8 @@ export type CDPEntitiesApi = {
         customerschemas: EntityApi<CDPEntityDef<CustomerSchema>>;
 
         purposes: EntityApi<CDPEntityDef<Purpose>>;
-        calculatedIndicators: EntityApi<CDPEntityDef<CalculatedIndicators>>;
+
+        calculatedIndicators: EntityApi<CDPEntityDef<CalculatedIndicator>>;
         activityIndicators: EntityApi<CDPEntityDef<ActivityIndicator>>;
         segments: EntityApi<CDPEntityDef<Segment>>;
         applications: EntityApi<CDPEntityDef<Application, keyof WithType<any>>, {
