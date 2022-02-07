@@ -31,11 +31,7 @@ import {ActionMapping} from "./entities/Action/ActionMapping";
 import {Id, WithDetails, WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
 import {Customer} from "./entities/Customer/Customer";
 import {InboundPurposes} from "./entities/InboundPurposes";
-import {CalculatedIndicator} from "./entities/Indicator/CalculatedIndicator";
-import {CustomerEntity} from "./entities/CustomerEntity";
-import {CustomerActivity} from "./entities/Customer/CustomerActivity";
-import {CustomerProfile} from "./entities/Customer/CustomerProfile";
-import {Relationship} from "./entities/Relationship";
+import {CalculatedIndicator} from "./entities/indicators/CalculatedIndicator";
 
 export type ServerOnlyFields = keyof (
     WithId
