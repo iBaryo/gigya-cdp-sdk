@@ -100,7 +100,6 @@ export type CDPEntitiesApi = {
                 scheduled: EntityApi,
                 status: EntityApi,
             }>;
-            // todo - customers needs its own EntityApi since its behavior is different. ie: req: {query: string}, res: its own type.
             customers: EntityApi<CDPEntityDef<CustomerProfile>, { // TODO: allow only GET
                 activities: { get({ query: string }): Promise<CustomerActivity> }
             }>;
