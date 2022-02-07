@@ -8,6 +8,7 @@ export * from './Event';
 export * from './Action';
 export * from './Segment';
 export * from './ActivityIndicator';
+export * from './Indicator/CalculatedIndicator';
 export * from './Action';
 export * from './View';
 export * from './MatchingRule';

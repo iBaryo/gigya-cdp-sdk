@@ -28,10 +28,14 @@ import {EventMapping} from "./entities/Event/EventMapping";
 import {EventSchedule} from "./entities/Event/EventSchedule";
 import {MatchingRule, MatchingRulePriority} from "./entities/MatchingRule";
 import {ActionMapping} from "./entities/Action/ActionMapping";
-import {Id, WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
-import {Customer} from "./entities/Customer";
+import {Id, WithDetails, WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
+import {Customer} from "./entities/Customer/Customer";
 import {InboundPurposes} from "./entities/InboundPurposes";
-import {CalculatedIndicators} from "./entities/CalculatedIndicators";
+import {CalculatedIndicator} from "./entities/Indicator/CalculatedIndicator";
+import {CustomerEntity} from "./entities/CustomerEntity";
+import {CustomerActivity} from "./entities/Customer/CustomerActivity";
+import {CustomerProfile} from "./entities/Customer/CustomerProfile";
+import {Relationship} from "./entities/Relationship";
 
 export type ServerOnlyFields = keyof (
     WithId
@@ -54,10 +58,15 @@ export type CDPEntitiesApi = {
     }>,
 
     businessunits: EntityApi<CDPEntityDef<BusinessUnit>, {
+        schemas: EntityApi<CDPEntityDef<CustomerEntity>, {
+            relationships: EntityApi<CDPEntityDef<Relationship>>,
+            matchRules: EntityApi<CDPEntityDef<MatchingRule>>;
+        }>
         customerschemas: EntityApi<CDPEntityDef<CustomerSchema>>;
 
         purposes: EntityApi<CDPEntityDef<Purpose>>;
-        calculatedIndicators: EntityApi<CDPEntityDef<CalculatedIndicators>>;
+
+        calculatedIndicators: EntityApi<CDPEntityDef<CalculatedIndicator>>;
         activityIndicators: EntityApi<CDPEntityDef<ActivityIndicator>>;
         segments: EntityApi<CDPEntityDef<Segment>>;
         applications: EntityApi<CDPEntityDef<Application, keyof WithType<any>>, {
@@ -92,13 +101,10 @@ export type CDPEntitiesApi = {
                 scheduled: EntityApi,
                 status: EntityApi,
             }>;
-
-            customers: EntityApi<CDPEntityDef<{
-                profiles: Customer[];
-                count: number;
-                totalCount: number;
-                nextCursorId: Id;
-            }>>; // TODO: allow only GET
+            // todo - customers needs its own EntityApi since its behavior is different. ie: req: {query: string}, res: its own type.
+            customers: EntityApi<CDPEntityDef<CustomerProfile>, { // TODO: allow only GET
+                activities: { get({ query: string }): Promise<CustomerActivity> }
+            }>;
         }>;
     }>;
 };
