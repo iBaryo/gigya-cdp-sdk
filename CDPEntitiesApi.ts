@@ -28,8 +28,7 @@ import {EventMapping} from "./entities/Event/EventMapping";
 import {EventSchedule} from "./entities/Event/EventSchedule";
 import {MatchingRule, MatchingRulePriority} from "./entities/MatchingRule";
 import {ActionMapping} from "./entities/Action/ActionMapping";
-import {Id, WithDetails, WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
-import {Customer} from "./entities/Customer/Customer";
+import {WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
 import {InboundPurposes} from "./entities/InboundPurposes";
 import {CalculatedIndicator} from "./entities/Indicator/CalculatedIndicator";
 import {CustomerEntity} from "./entities/CustomerEntity";
@@ -101,6 +100,7 @@ export type CDPEntitiesApi = {
                 scheduled: EntityApi,
                 status: EntityApi,
             }>;
+            // todo - customers needs its own EntityApi since its behavior is different. ie: req: {query: string}, res: its own type.
             customers: EntityApi<CDPEntityDef<CustomerProfile>, { // TODO: allow only GET
                 activities: { get({ query: string }): Promise<CustomerActivity> }
             }>;
