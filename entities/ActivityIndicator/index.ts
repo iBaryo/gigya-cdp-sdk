@@ -1,9 +1,9 @@
-import {Id} from "../../common";
+import {Id} from "../common";
 import {CalculatedField, CalculationMethod} from "./CalculationMethod";
 import {DateRange} from "./DateRange";
-import {ActivitySchemaId} from "../../Schema";
+import {ActivitySchemaId} from "../Schema";
 import {ActivityIndicatorRuleCondition} from "./ActivityIndicatorRuleCondition";
-import {IndicatorBase} from "../IndicatorBase";
+import {IndicatorBase} from "../Indicator/IndicatorBase";
 
 export type ActivityIndicatorName = Id;
 export interface ActivityIndicator extends IndicatorBase {
