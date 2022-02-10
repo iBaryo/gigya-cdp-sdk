@@ -57,10 +57,15 @@ export type CDPEntitiesApi = {
     }>,
 
     businessunits: EntityApi<CDPEntityDef<BusinessUnit>, {
+
         schemas: EntityApi<CDPEntityDef<CustomerEntity>, {
-            relationships: EntityApi<CDPEntityDef<Relationship>>,
+            relationships: EntityApi<CDPEntityDef<Relationship>>;
             matchRules: EntityApi<CDPEntityDef<MatchingRule>>;
-        }>
+            journeys: EntityApi<CDPEntityDef<Journey>, {
+                statsPayloads: EntityApi<CDPEntityDef<Journey>> // TODO: only allow GET
+            }>,
+        }>;
+
         customerschemas: EntityApi<CDPEntityDef<CustomerSchema>>;
 
         purposes: EntityApi<CDPEntityDef<Purpose>>;
@@ -68,6 +73,7 @@ export type CDPEntitiesApi = {
         calculatedIndicators: EntityApi<CDPEntityDef<CalculatedIndicator>>;
         activityIndicators: EntityApi<CDPEntityDef<ActivityIndicator>>;
         segments: EntityApi<CDPEntityDef<Segment>>;
+
         applications: EntityApi<CDPEntityDef<Application, keyof WithType<any>>, {
             auth: EntityApi<CDPEntityDef<ApplicationAuth>, {
                 test: EntityApi<CDPEntityDef<ApplicationAuth>>
@@ -96,10 +102,12 @@ export type CDPEntitiesApi = {
             mergeRules: EntityApi<CDPEntityDef<MergeRule>>;
 
             journeys: EntityApi<CDPEntityDef<Journey>>;
+
             audiences: EntityApi<CDPEntityDef<Audience>, {
                 scheduled: EntityApi,
                 status: EntityApi,
             }>;
+            // todo - customers needs its own EntityApi since its behavior is different. ie: req: {query: string}, res: its own type.
             customers: EntityApi<CDPEntityDef<CustomerProfile>, { // TODO: allow only GET
                 activities: { get({ query: string }): Promise<CustomerActivity> }
             }>;
