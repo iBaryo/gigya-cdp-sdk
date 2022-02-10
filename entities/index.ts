@@ -7,7 +7,7 @@ export * from './Connector';
 export * from './Event';
 export * from './Action';
 export * from './Segment';
-export * from './ActivityIndicator';
+export * from './Indicator/ActivityIndicator';
 export * from './Indicator/CalculatedIndicator';
 export * from './Action';
 export * from './View';
