@@ -28,7 +28,7 @@ import {EventMapping} from "./entities/Event/EventMapping";
 import {EventSchedule} from "./entities/Event/EventSchedule";
 import {MatchingRule, MatchingRulePriority} from "./entities/MatchingRule";
 import {ActionMapping} from "./entities/Action/ActionMapping";
-import {WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
+import { WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
 import {InboundPurposes} from "./entities/InboundPurposes";
 import {CalculatedIndicator} from "./entities/Indicator/CalculatedIndicator";
 import {CustomerEntity} from "./entities/CustomerEntity";
@@ -62,7 +62,7 @@ export type CDPEntitiesApi = {
             relationships: EntityApi<CDPEntityDef<Relationship>>;
             matchRules: EntityApi<CDPEntityDef<MatchingRule>>;
             journeys: EntityApi<CDPEntityDef<Journey>, {
-                statsPayloads: EntityApi<CDPEntityDef<Journey>> // TODO: only allow GET
+                statsPayloads: EntityApi<CDPEntityDef<Journey>>
             }>,
         }>;
 
