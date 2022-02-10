@@ -1,6 +1,6 @@
 import {Id, StaticEntity} from './common';
 import {SegmentName} from "./Segment";
-import {ActivityIndicatorName} from "./ActivityIndicator";
+import {ActivityIndicatorName} from "./Indicator/ActivityIndicator";
 import {ActivityFieldName, ProfileFieldName} from "./common/Field";
 import {ActivitySchemaName} from "./Schema";
 

@@ -1,4 +1,4 @@
-import {CalculatedField} from "../ActivityIndicator/CalculationMethod";
+import {CalculatedField} from "./ActivityIndicator/CalculationMethod";
 import {IndicatorBase} from "./IndicatorBase";
 
 export interface CalculatedIndicator extends IndicatorBase {
