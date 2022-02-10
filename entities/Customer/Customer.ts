@@ -4,7 +4,7 @@ import {ProfileFieldName} from "../common/Field";
 import {ActivityIndicatorName} from "../Indicator/ActivityIndicator";
 import {CalculationMethod} from "../Indicator/ActivityIndicator/CalculationMethod";
 import {SegmentName, SegmentValue} from "../Segment";
-import {Purpose, PurposeId, PurposeStatus} from "../Purpose";
+import {Purpose, PurposeId, PurposeStatus} from "../Purpose/Purpose";
 
 export interface Customer extends WithViewId, WithMetaData {
     _id: Id;

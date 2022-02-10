@@ -2,7 +2,7 @@ export * from './Workspace';
 export * from './BusinessUnit';
 export * from './Schema';
 export * from './common/Field';
-export * from './Purpose';
+export * from './Purpose/Purpose';
 export * from './Connector';
 export * from './Event';
 export * from './Action';

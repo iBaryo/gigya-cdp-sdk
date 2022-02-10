@@ -9,7 +9,7 @@ import {Id} from "../index";
 import {Condition, SimpleCondition} from "./Condition";
 import {FieldCondition, FieldStateCondition} from "./FieldCondition";
 import {ActivityFieldName, ProfileFieldName} from "../Field";
-import {PurposeStatus} from "../../Purpose";
+import {PurposeStatus} from "../../Purpose/Purpose";
 
 // TODO: clearout "state" condition entities
 

@@ -29,7 +29,7 @@ import {EventSchedule} from "./entities/Event/EventSchedule";
 import {MatchingRule, MatchingRulePriority} from "./entities/MatchingRule";
 import {ActionMapping} from "./entities/Action/ActionMapping";
 import { WithId, WithMetaData, WithTenantId, WithType} from "./entities/common";
-import {InboundPurposes} from "./entities/InboundPurposes";
+import {InboundPurposes} from "./entities/Purpose/InboundPurposes";
 import {CalculatedIndicator} from "./entities/Indicator/CalculatedIndicator";
 import {CustomerEntity} from "./entities/CustomerEntity";
 import {CustomerActivity} from "./entities/Customer/CustomerActivity";
