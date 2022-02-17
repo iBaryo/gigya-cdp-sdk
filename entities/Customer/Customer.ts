@@ -1,10 +1,10 @@
 import {WithViewId} from "../View";
 import {Id, ISODateTimeString, WithMetaData} from "../common";
 import {ProfileFieldName} from "../common/Field";
-import {ActivityIndicatorName} from "../Indicator/ActivityIndicator";
-import {CalculationMethod} from "../Indicator/ActivityIndicator/CalculationMethod";
+import {ActivityIndicatorName} from "../indicators/ActivityIndicator";
+import {CalculationMethod} from "../indicators/ActivityIndicator/CalculationMethod";
 import {SegmentName, SegmentValue} from "../Segment";
-import {Purpose, PurposeId, PurposeStatus} from "../Purpose/Purpose";
+import {Purpose, PurposeId, PurposeStatus} from "../Purpose";
 
 export interface Customer extends WithViewId, WithMetaData {
     _id: Id;

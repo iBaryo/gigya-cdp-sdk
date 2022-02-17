@@ -1,5 +1,5 @@
 import {Entity, Id, WithCategory} from "../common";
-import {PurposeId} from "../Purpose/Purpose";
+import {PurposeId} from "../Purpose";
 import {WithConfigValues, WithResourcePath} from "../common/config";
 import {ApplicationType} from "../Application";
 import {DirectApplication} from "../Application/DirectApplication";

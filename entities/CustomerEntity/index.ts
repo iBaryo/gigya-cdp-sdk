@@ -4,9 +4,9 @@ import {WithProtectedFields} from "..";
 
 export type relationId = Id;
 
-export interface CustomerEntity extends SchemasBase, WithProtectedFields {}
+export interface CustomerEntity extends SchemaBase, WithProtectedFields {}
 
-export interface SchemasBase extends WithId, WithSchema, WithDetails {
+export interface SchemaBase extends WithId, WithSchema, WithDetails {
     relationId: relationId;
     schemaType: SchemaType;
     default?: boolean;

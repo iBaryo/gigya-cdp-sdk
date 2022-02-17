@@ -1,7 +1,7 @@
 import {Id} from "../common";
-import { SchemasBase} from "../CustomerEntity";
+import { SchemaBase} from "../CustomerEntity";
 
-export interface Relationship extends SchemasBase {
+export interface Relationship extends SchemaBase {
     childSchemaId: Id;
     parentSchemaId: Id;
 }

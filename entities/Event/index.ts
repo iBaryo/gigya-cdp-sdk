@@ -1,5 +1,5 @@
 import {Entity, Id, ISODateTimeString, WithType} from "../common";
-import {PurposeId} from "../Purpose/Purpose";
+import {PurposeId} from "../Purpose";
 import {SchemaId, WithSchema} from "../Schema";
 import {WithConfigValues} from "../common/config";
 import {DirectApplication} from "../Application/DirectApplication";
