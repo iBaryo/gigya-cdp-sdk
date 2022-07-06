@@ -60,7 +60,10 @@ export type CDPEntitiesApi = {
 
         schemas: EntityApi<CDPEntityDef<CustomerEntity>, {
             relationships: EntityApi<CDPEntityDef<Relationship>>;
+            segments: EntityApi<CDPEntityDef<Segment>>;
             matchRules: EntityApi<CDPEntityDef<MatchingRule>>;
+            matchRulesPriority: EntityApi<CDPEntityDef<MatchingRulePriority>>;
+            calculatedIndicators: EntityApi<CDPEntityDef<CalculatedIndicator>>;
             journeys: EntityApi<CDPEntityDef<Journey>, {
                 statsPayloads: EntityApi<CDPEntityDef<Journey>>
             }>,
