@@ -78,6 +78,7 @@ export type CDPEntitiesApi = {
         segments: EntityApi<CDPEntityDef<Segment>>;
 
         applications: EntityApi<CDPEntityDef<Application, keyof WithType<any>>, {
+            credentials: EntityApi<CDPEntityDef<{userKey: string; userSecret: string}>>,
             auth: EntityApi<CDPEntityDef<ApplicationAuth>, {
                 test: EntityApi<CDPEntityDef<ApplicationAuth>>
             }>,
@@ -111,7 +112,7 @@ export type CDPEntitiesApi = {
                 status: EntityApi,
             }>;
             customers: EntityApi<CDPEntityDef<CustomerProfile>, { // TODO: allow only GET
-                activities: { get({ query: string }): Promise<CustomerActivity> }
+                // activities: { get({ query: string }): Promise<CustomerActivity> }
             }>;
         }>;
     }>;

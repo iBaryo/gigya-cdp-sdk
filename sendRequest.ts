@@ -1,6 +1,7 @@
-import request, {CoreOptions, Response} from "request";
+import * as request from "request";
 import {RawRequest} from "./request";
 import {AccessHeaders} from "./ts-rest-client";
+import {CoreOptions, Response} from "request";
 
 export const CallIdHeader = 'x-callid';
 
