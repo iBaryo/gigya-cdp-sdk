@@ -5,6 +5,7 @@ import {ActivityIndicatorName} from "../indicators/ActivityIndicator";
 import {CalculationMethod} from "../indicators/ActivityIndicator/CalculationMethod";
 import {SegmentName, SegmentValue} from "../Segment";
 import {Purpose, PurposeId, PurposeStatus} from "../Purpose";
+import {SchemaId} from "../Schema";
 
 export interface Customer extends WithViewId, WithMetaData {
     _id: Id;
@@ -36,5 +37,14 @@ export interface Customer extends WithViewId, WithMetaData {
             status: PurposeStatus;
             date: ISODateTimeString;
         }>;
-    }
+    },
+
+    relationships: Array<
+        Record<
+            ParentSchemaId, // always only one property for that record
+            { groupId: Id; } & Record<string, any>
+        >
+    >;
 }
+
+type ParentSchemaId = SchemaId;
